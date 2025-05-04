@@ -16,7 +16,7 @@ const {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedRegion, setSelectedRegion] = useState('All');
   const [selectedLanguage, setSelectedLanguage] = useState('All');
-  const [visibleCount, setVisibleCount] = useState(15);
+  const [visibleCount, setVisibleCount] = useState(9);
 
 
   const regions = useMemo(() => {
@@ -147,7 +147,7 @@ const {
                 <img
                   src={country.flags.png}
                   alt={country.name.common}
-                  className="w-16 h-10 object-cover mb-2"
+                  className="w-full h-60 object-cover mb-2"
                 />
                 <h3 className="font-semibold text-lg">{country.name.common}</h3>
                 <p><strong>Population:</strong> {country.population.toLocaleString()}</p>
@@ -155,11 +155,12 @@ const {
                 <p><strong>Capital:</strong> {country.capital?.[0] || 'N/A'}</p>
                 <p><strong>Languages:</strong> {country.languages ? Object.values(country.languages).join(', ') : 'N/A'}</p>
                 <Link
-                  to={`/country/${country.cca3}`}
-                  className="text-blue-500 hover:underline mt-2 inline-block"
-                >
-                  View Details
-                </Link>
+  to={`/country/${country.cca3}`}
+  className="mt-3 inline-block px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full shadow-md hover:from-indigo-600 hover:via-purple-600 hover:to-pink-600 transition duration-300"
+>
+  🌍 View Details
+</Link>
+
               </li>
             ))
           )}

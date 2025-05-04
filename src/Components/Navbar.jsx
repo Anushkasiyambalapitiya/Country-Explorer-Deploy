@@ -1,46 +1,63 @@
-import React from "react";
+import React, { useState } from "react";
+import { FaHome, FaGlobe, FaBars, FaTimes } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const HeaderNavbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleNavbar = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
-    
+    <nav className="bg-gradient-to-r from-blue-950 to-blue-900 text-white shadow-sm px-6 py-4">
+      <div className="flex justify-between items-center">
+        {/* Left Side */}
+        <div className="flex items-center space-x-4">
+          <span className="font-semibold text-white text-2xl md:text-3xl flex items-center space-x-2">
+            <FaGlobe />
+            <span>Rest Countries</span>
+          </span>
+        </div>
 
-<nav className="bg-white border-gray-200 dark:bg-gray-900">
-  <div className="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-4">
-    <a href="https://flowbite.com/" className="flex items-center space-x-3 rtl:space-x-reverse">
-        <img src="https://flowbite.com/docs/images/logo.svg" className="h-8" alt="Flowbite Logo" />
-        <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"> World View</span>
-    </a>
-    <button data-collapse-toggle="navbar-default" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
-        <span className="sr-only">Open main menu</span>
-        <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15"/>
-        </svg>
-    </button>
-    <div className="hidden w-full md:block md:w-auto" id="navbar-default">
-      <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-        <li>
-          <a href="/" className="block py-2 px-3 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" aria-current="page">Home</a>
-        </li>
-        <li>
-          <a href="/countries" className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Countries</a>
-        </li>
-        <li>
-          <a href="#" className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">About Us</a>
-        </li>
-        <li>
-          <a href="#" className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">My Favorites</a>
-        </li>
-        <li>
-          <a href="/signIn" className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Sign In</a>
-        </li>
-        <li>
-          <a href="/signup" className="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Sign Up</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+        {/* Mobile Hamburger */}
+        <div className="md:hidden">
+          <button onClick={toggleNavbar} className="text-white focus:outline-none">
+            {isOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
+          </button>
+        </div>
 
+        {/* Right Side for Desktop */}
+        <div className="hidden md:flex items-center space-x-6">
+          <a href="/countries" className="text-white hover:text-white flex items-center space-x-2">
+            <FaHome />
+            <span>Home</span>
+          </a>
+          <Link
+           to="/signIn"
+            className="py-2.5 px-5 text-sm font-medium text-gray-900 bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+          >
+            Login
+          </Link>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      {isOpen && (
+        <div className="mt-4 flex flex-col space-y-4 md:hidden">
+          <a href="/countries" className="text-white flex items-center space-x-2">
+            <FaHome />
+            <span>Home</span>
+          </a>
+          <button
+            type="button"
+            className="py-2.5 px-5 text-sm font-medium text-gray-900 bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+          >
+            Login
+          </button>
+        </div>
+      )}
+    </nav>
   );
 };
 

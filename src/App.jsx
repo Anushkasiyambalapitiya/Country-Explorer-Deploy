@@ -10,6 +10,7 @@ import CountryDetails from './Pages/CountryDetails.jsx';
 import SignIn from './Pages/SignIn.jsx';
 import SignUp from './Pages/SignUp.jsx';
 import { UserProvider } from './Context/userContext.jsx';
+import Footer from './Components/Footer.jsx';
 
 
 function App() {
@@ -17,16 +18,12 @@ function App() {
 
   return (
     <>
-     {/* <div>
-      <span className='items-center justify-center text-4xl'>
-        Application Framework
-      </span>
-     </div> */}
+  
      <UserProvider>
  <CountryProvider>
      <BrowserRouter>
   
-     <HeaderNavbar /> {/* ✅ Display it here */}
+     <HeaderNavbar /> 
      <Routes>
       <Route path='/' element={<Dashboard/>}>    </Route>
       <Route path='/countries' element={<Countries/>}>    </Route>
@@ -35,6 +32,7 @@ function App() {
       <Route path="/signup" element={<SignUp />} /> {/* ⬅️ Add this */}
 
      </Routes>
+     <Footer/>
      </BrowserRouter>
      </CountryProvider>
 
